@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Space Explorer</title>
+        <link rel="icon" href="../static/logo.png" type="image/png">
+        <link rel="stylesheet" href="static/style.css" />
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        <script src="{{ url_for('static', filename='../static/script.js') }}" defer></script>
+    </head>
+    <body>
+        <div id="overlay"></div>
+        <div id="mobile-menu" class="mobile-main-menu">
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('missions') }}">Missions</a></li>
+                <li><a href="{{ url_for('rovers') }}">Rovers</a></li>
+                <li><a href="{{ url_for('astronauts') }}">Astronauts</a></li>
+                <li><a href="{{ url_for('milestones') }}">Milestones</a></li>
+                <li><a href="{{ url_for('profile') }}">Profile</a></li>
+            </ul>
+        </div>
+        <header class="main-header">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="../static/logo.png" alt="SpaceX" />
+                </a>
+                <span>Space Exploration</span>
+            </div>
+            <nav class="desktop-main-menu">
+                <ul>
+                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                    <li><a href="{{ url_for('missions') }}">Missions</a></li>
+                    <li><a href="{{ url_for('rovers') }}">Rovers</a></li>
+                    <li><a href="{{ url_for('astronauts') }}">Astronauts</a></li>
+                    <li><a href="{{ url_for('milestones') }}">Milestones</a></li>
+                    <li><a href="{{ url_for('profile') }}">Profile</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <!-- Hamburger Menu-->
+        <button id="menu-btn" class="hamburger" type="button">
+            <span class="hamburger-top"></span>
+            <span class="hamburger-middle"></span>
+            <span class="hamburger-bottom"></span>
+        </button>
+        <!-- Section A-->
+        <section class="section-milestones">
+            <div class="gradient"></div>
+            <div class="section-inner-milestones">
+                <h2>Milestones</h2>
+            </div>
+
+            <div class="scroll-arrow">
+                <svg width="30px" height="20px">
+                    <path 
+                        stroke="#fff" 
+                        fill="none" 
+                        stroke-width="2px" 
+                        d="M2.000,5.000 L15.000,18.000 L28.000,5.000 ">
+                    </path>
+                </svg>
+            </div>
+
+            
+        </section>
+
+        <div class="filter-form">
+        <div class="timeline-controls">
+            <select id="yearDropdown">
+              <option value="">Select Year</option>
+              {% for year in years %}
+                <option value="{{ year }}">{{ year }}</option>
+              {% endfor %}
+            </select>
+            <button id="scrollToYearButton">Scroll</button>
+        </div>
+    </div>
+
+        <div class="timeline">
+            {% for milestone in milestones %}
+            <div class="timeline-event" data-year="{{ milestone.year }}">
+              <div class="timeline-event-icon ">
+                <i class="lni-cake"></i>
+                <div class="timeline-event-date">{{ milestone.date }}</div>
+              </div>
+              <div class="timeline-event-content ">
+                <div class="timeline-event-title">{{ milestone.title }}</div>
+                <h3>Mission: {{ milestone.MISSION_NAME }}</h3>
+                <h3>Rover: {{ milestone.ROVER_NAME }}</h3>
+                <div class="timeline-event-description">
+                  <p>{{ milestone.description }}</p>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+    </body>
+</html>

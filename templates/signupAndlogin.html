@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Space Explorer</title>
+        <link rel="icon" href="../static/logo.png" type="image/png">
+        <link rel="stylesheet" href="../static/login_style.css" />
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+        <script src="../static/script.js" defer></script>
+    </head>
+
+    <body>
+        <header class="main-header">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="../static/logo.png" alt="SpaceX" />
+                </a>
+                <span>Space Exploration</span>
+            </div>
+        </header>
+        <div class="main">
+            <input type="checkbox" id="chk" aria-hidden="true">
+
+            <div class="signup">
+                <form id="signupForm">
+                    <label for="chk" aria-hidden="true">Sign up</label>
+                    <input type="text" name="txt" placeholder="User name" required="">
+                    <input type="email" name="email" placeholder="Email" required="">
+                    <input type="Password" name="pswd" placeholder="Password" required="">
+                    <button type="submit" class="signupButton">Sign up</buttonclass>
+                </form>
+            </div>
+
+            <div class="login">
+                <form id="loginForm">
+                    <label for="chk" aria-hidden="true">Login</label>
+                    <input type="email" name="emailL" placeholder="Email" required="">
+                    <input type="Password" name="pswdL" placeholder="Password" required="">
+                    <button type="submit" class="loginButton">Login</button>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

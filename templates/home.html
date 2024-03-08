@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Space Explorer</title>
+        <link rel="icon" href="../static/logo.png" type="image/png">
+        <link rel="stylesheet" href="static/style.css" />
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        <script src="{{ url_for('static', filename='../static/script.js') }}" defer></script>
+    </head>
+    <body>
+        <div id="overlay"></div>
+        <div id="mobile-menu" class="mobile-main-menu">
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('missions') }}">Missions</a></li>
+                <li><a href="{{ url_for('rovers') }}">Rovers</a></li>
+                <li><a href="{{ url_for('astronauts') }}">Astronauts</a></li>
+                <li><a href="{{ url_for('milestones') }}">Milestones</a></li>
+                <li><a href="{{ url_for('profile') }}">Profile</a></li>
+            </ul>
+        </div>
+        <header class="main-header">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="../static/logo.png" alt="SpaceX" />
+                </a>
+                <span>Space Exploration</span>
+            </div>
+            <nav class="desktop-main-menu">
+                <ul>
+                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                    <li><a href="{{ url_for('missions') }}">Missions</a></li>
+                    <li><a href="{{ url_for('rovers') }}">Rovers</a></li>
+                    <li><a href="{{ url_for('astronauts') }}">Astronauts</a></li>
+                    <li><a href="{{ url_for('milestones') }}">Milestones</a></li>
+                    <li><a href="{{ url_for('profile') }}">Profile</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <!-- Hamburger Menu-->
+        <button id="menu-btn" class="hamburger" type="button">
+            <span class="hamburger-top"></span>
+            <span class="hamburger-middle"></span>
+            <span class="hamburger-bottom"></span>
+        </button>
+        <!-- Section A-->
+        <div class="grainy-background">
+        <section class="section-home">
+            <div class="gradient"></div>
+            <!--
+            <div class="section-inner-home">
+                <h2>Space Explorer</h2>
+            </div>
+            -->
+            <div class="scroll-arrow">
+                <svg width="30px" height="20px">
+                    <path 
+                        stroke="#fff" 
+                        fill="none" 
+                        stroke-width="2px" 
+                        d="M2.000,5.000 L15.000,18.000 L28.000,5.000 ">
+                    </path>
+                </svg>
+            </div>
+
+            <div class="stats">
+                <div>
+                    <span class="counter" data-target="{{ row_counts[0] }}">0</span>
+                    <h4>Missions</h4>
+                </div>
+
+                <div>
+                    <span class="counter" data-target="{{ row_counts[1] }}">0</span>
+                    <h4>Rovers</h4>
+                </div>
+
+                <div>
+                    <span class="counter" data-target="{{ row_counts[2] }}">0</span>
+                    <h4>Astronauts</h4>
+                </div>
+
+                <div>
+                    <span class="counter" data-target="{{ row_counts[3] }}">0</span>
+                    <h4>Milestones</h4>
+                </div>
+            </div>
+            
+        </section>
+    </div>
+        <div class="intro-container">
+            <div class="introduction">
+                <h2>Welcome, Space Explorer!</h2>
+                <div class="divider"></div>
+                <p>Explore the collection of missions, rovers, astronauts and milestones in space exploration. Each card holds further details - simply click to view more information. Bookmark your favorite missions, rovers, astronauts and milestones with a single click and you can access them anytime in your profile. Start Exploring!</p>
+                <p></p>
+            </div>
+        </div>
+
+        <div class="recent-explorations">
+            <h2>Recent Missions</h2>
+        </div>
+
+        {% for mission in recent_missions %}
+        <div class="data-card" id="card{{ loop.index0 }}">
+            <div class="card-content">
+                <img src="{{ mission.IMG_URL }}" alt="{{ mission.name }}" class="mission-image">
+                <div class="mission-info">
+                    <div class="details-row">
+                        <p class="agency">{{ mission.agency }}</p>
+                        <p class="launch-date">Launch Date: {{ mission.launch_date }}</p>
+                    </div>
+                    <div class="details-row">
+                        <h2 class="mission-name">{{ mission.name }}</h2>
+                    </div>
+                    <div class="details-row">
+                        <p class="target-celestial">{{ mission.target_celestial_body }}</p>
+                        <p class="purpose">{{ mission.purpose }}</p>
+                        <p class="status">{{ mission.status }}</p>
+                        
+                    </div>
+                </div>
+                <p id="id">{{ mission.mission_id }}</p>
+            </div>
+        </div>
+        {% endfor %}
+
+        
+        <button id="showMoreButton">Show More</button>
+        
+        
+        
+    </body>
+</html>

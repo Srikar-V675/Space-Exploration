@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>SpaceX</title>
+        <link rel="stylesheet" href="../static/style.css" />
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        <script src="{{ url_for('static', filename='../static/script.js') }}" defer></script>
+    </head>
+    <body>
+        <div id="overlay"></div>
+        <div id="mobile-menu" class="mobile-main-menu">
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('missions') }}">Missions</a></li>
+                <li><a href="{{ url_for('rovers') }}">Rovers</a></li>
+                <li><a href="{{ url_for('astronauts') }}">Astronauts</a></li>
+                <li><a href="{{ url_for('milestones') }}">Milestones</a></li>
+                <li><a href="{{ url_for('profile') }}">Profile</a></li>
+            </ul>
+        </div>
+        <header class="main-header">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="../static/logo.png" alt="SpaceX" />
+                </a>
+                <span>Space Exploration</span>
+            </div>
+            <nav class="desktop-main-menu">
+                <ul>
+                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                    <li><a href="{{ url_for('missions') }}">Missions</a></li>
+                    <li><a href="{{ url_for('rovers') }}">Rovers</a></li>
+                    <li><a href="{{ url_for('astronauts') }}">Astronauts</a></li>
+                    <li><a href="{{ url_for('milestones') }}">Milestones</a></li>
+                    <li><a href="{{ url_for('profile') }}">Profile</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <!-- Hamburger Menu-->
+        <button id="menu-btn" class="hamburger" type="button">
+            <span class="hamburger-top"></span>
+            <span class="hamburger-middle"></span>
+            <span class="hamburger-bottom"></span>
+        </button>
+        
+        <div class="heading-bookmark">
+            <h1>Bookmarked Astronauts</h1>
+        </div>
+
+        <div id="astrosContainer">
+        {% for astronaut in astronauts %}
+        <div class="astro-card">
+            <div class="astro-card-content">
+                <img src="{{ astronaut.img_url }}" alt="{{ astronaut.name }}" class="astro-image">
+                <div class="astro-text-content">
+                    <h1 class="astro-name">{{ astronaut.name }}</h1>
+                    <p class="astro-nationality">Nationality: {{ astronaut.nationality }}</p>
+                    <p class="astro-born">Born Date: {{ astronaut.born_date }}</p>
+                    <p class="astro-timeInSpace">Time in Space: {{ astronaut.time_in_space }}</p>
+                    <p class="astro-missions">Missions Participated: {{ astronaut.missions_participated }}</p>
+                    <p id="id">{{ astronaut.astronaut_id }}</p>
+                </div>
+            </div>
+        </div>        
+        {% endfor %}
+    </div>
+
+    </body>
+</html>
