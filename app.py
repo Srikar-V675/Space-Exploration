@@ -6,7 +6,7 @@ from functools import wraps
 
 
 app = Flask(__name__)
-app.secret_key = '6969@itachi'
+# app.secret_key = '6969@itachi'
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 #app.permanent_session_lifetime = timedelta(days=1)  # Session expires in a day
 
